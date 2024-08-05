@@ -1,0 +1,12 @@
+.color-form {
+  margin: 20px 0;
+}
+
+.color-form label {
+  display: block;
+  margin: 10px 0;
+}
+
+.color-form button {
+  margin-top: 10px;
+}
