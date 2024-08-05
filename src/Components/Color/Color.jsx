@@ -1,17 +1,15 @@
-import "./Color.css";
+import React from 'react';
+import './Color.css';
 
-export default function Color({ color }) {
+const Color = ({ color }) => {
+  const { hex, role, contrastText } = color;
+
   return (
-    <div
-      className="color-card"
-      style={{
-        background: color.hex,
-        color: color.contrastText,
-      }}
-    >
-      <h3 className="color-card-headline">{color.hex}</h3>
-      <h4>{color.role}</h4>
-      <p>contrast: {color.contrastText}</p>
+    <div className="color-card" style={{ backgroundColor: hex, color: contrastText }}>
+      <p>Role: {role}</p>
+      <p>Hex: {hex}</p>
     </div>
   );
-}
+};
+
+export default Color;
