@@ -17,14 +17,27 @@ function App() {
     ));
   };
 
+  const handleDeleteColor = (colorId) => {
+    setColors(colors.filter(color => color.id !== colorId));
+  };
+
   return (
     <>
       <h1>Theme Creator</h1>
       <ColorForm onSubmitColor={handleAddColor} buttonText="Add Color" />
       <div>
-        {colors.map((color) => (
-          <Color key={color.id} color={color} onUpdateColor={handleUpdateColor} />
-        ))}
+        {colors.length > 0 ? (
+          colors.map((color) => (
+            <Color 
+              key={color.id} 
+              color={color} 
+              onUpdateColor={handleUpdateColor} 
+              onDeleteColor={handleDeleteColor} 
+            />
+          ))
+        ) : (
+          <p>No colors available. Please add some colors.</p>
+        )}
       </div>
     </>
   );

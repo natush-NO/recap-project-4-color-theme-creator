@@ -9,3 +9,6 @@
   background: black;
   color: white;
 }
+.delete-button {
+  margin-right: 5px;
+}
