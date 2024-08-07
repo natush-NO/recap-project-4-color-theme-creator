@@ -1,5 +1,7 @@
+// src/Components/ColorForm/ColorForm.jsx
 import React from 'react';
 import ColorInput from '../ColorInput/ColorInput';
+import { checkContrastRatio } from '../ContrastColorCheck/ContrastColorCheck'; 
 import './ColorForm.css';
 
 export default function ColorForm({
@@ -7,7 +9,7 @@ export default function ColorForm({
   initialData = { role: "", hex: "#ffffff", contrastText: "#000000" },
   buttonText = "ADD COLOR",
 }) {
-  function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = {
@@ -15,8 +17,11 @@ export default function ColorForm({
       hex: formData.get('hex'),
       contrastText: formData.get('contrastText'),
     };
+
+    const message = await checkContrastRatio(data.hex, data.contrastText);
+
     onSubmitColor(data);
-  }
+  };
 
   return (
     <form className="color-form" onSubmit={handleSubmit}>

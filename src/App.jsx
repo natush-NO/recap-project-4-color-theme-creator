@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import Color from './Components/Color/Color';
@@ -32,7 +33,7 @@ function App() {
         {colors.length > 0 ? (
           colors.map((color) => (
             <Color 
-              key={color.id} 
+              key={color.id} // Переконайтесь, що ключ унікальний
               color={color} 
               onUpdateColor={handleUpdateColor} 
               onDeleteColor={handleDeleteColor} 

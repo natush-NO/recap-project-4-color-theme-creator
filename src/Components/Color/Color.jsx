@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ColorForm from '../ColorForm/ColorForm';
 import CopyToClipboard from '../CopyToClipboard/CopyToClipboard';
+import { ContrastColorCheck } from '../ContrastColorCheck/ContrastColorCheck'; 
 import './Color.css';
 
 const Color = ({ color, onUpdateColor, onDeleteColor }) => {
@@ -18,7 +19,7 @@ const Color = ({ color, onUpdateColor, onDeleteColor }) => {
   const handleDeleteClick = () => setIsConfirmingDelete(true);
   const handleConfirmDelete = () => {
     onDeleteColor(color.id);
-    setIsConfirmingDelete(false); 
+    setIsConfirmingDelete(false);
   };
 
   const handleCancelDelete = () => setIsConfirmingDelete(false);
@@ -30,51 +31,29 @@ const Color = ({ color, onUpdateColor, onDeleteColor }) => {
           <ColorForm
             initialData={color}
             onSubmitColor={handleSave}
-            buttonText="Save Color"
+            buttonText="Update Color"
           />
-          <button 
-            className='cancel-button' 
-            onClick={handleCancel}
-          >
-            Cancel
-          </button>
+          <button className='cancel-button' onClick={handleCancel}>Cancel</button>
         </>
       ) : isConfirmingDelete ? (
         <div className="color-card-highlight">
           <p>Are you sure you want to delete this color?</p>
-          <button 
-            className='confirm-delete-button' 
-            onClick={handleConfirmDelete}
-          >
-            Yes, Delete
-          </button>
-          <button 
-            className='cancel-delete-button' 
-            onClick={handleCancelDelete}
-          >
-            Cancel
-          </button>
+          <button className='confirm-delete-button' onClick={handleConfirmDelete}>Yes, Delete</button>
+          <button className='cancel-delete-button' onClick={handleCancelDelete}>Cancel</button>
         </div>
       ) : (
-            <>
-              <div className='copy-div'>
-                <p className='color-hex color-text'>Hex: {color.hex}</p>
-          <CopyToClipboard text={color.hex} />
-                </div>
-              <p className='color-role'>Role: {color.role}</p>
-          <p className='color-role'>contrast: #FFFFFF</p>
-          <button 
-            className='delete-button' 
-            onClick={handleDeleteClick}
-          >
-            Delete
-          </button>
-          <button 
-            className='edit-button' 
-            onClick={handleEditClick}
-          >
-            Edit
-          </button>
+        <>
+          <div className='copy-div'>
+            <p className='color-hex color-text'>Hex: {color.hex}</p>
+            <CopyToClipboard text={color.hex} />
+          </div>
+          <p className='color-role'>Role: {color.role}</p>
+          <p className='color-contrast'>Contrast: {color.contrastText}</p>
+              <ContrastColorCheck checkHex={color.hex} checkContrast={color.contrastText} />
+              <div className='button-div'>
+          <button className='delete-button' onClick={handleDeleteClick}>Delete</button>
+          <button className='edit-button' onClick={handleEditClick}>Edit</button>
+              </div>
         </>
       )}
     </div>
