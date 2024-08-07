@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ColorForm from '../ColorForm/ColorForm';
+import CopyToClipboard from '../CopyToClipboard/CopyToClipboard';
 import './Color.css';
 
 const Color = ({ color, onUpdateColor, onDeleteColor }) => {
@@ -17,10 +18,10 @@ const Color = ({ color, onUpdateColor, onDeleteColor }) => {
   const handleDeleteClick = () => setIsConfirmingDelete(true);
   const handleConfirmDelete = () => {
     onDeleteColor(color.id);
-    setIsConfirmingDelete(false); // Сховати підтвердження видалення
+    setIsConfirmingDelete(false); 
   };
 
-  const handleCancelDelete = () => setIsConfirmingDelete(false); // Сховати підтвердження видалення
+  const handleCancelDelete = () => setIsConfirmingDelete(false);
 
   return (
     <div className="color-card" style={{ backgroundColor: color.hex, color: color.contrastText }}>
@@ -55,9 +56,13 @@ const Color = ({ color, onUpdateColor, onDeleteColor }) => {
           </button>
         </div>
       ) : (
-        <>
-          <p className='color-role'>Role: {color.role}</p>
-          <p className='color-hex'>Hex: {color.hex}</p>
+            <>
+              <div className='copy-div'>
+                <p className='color-hex color-text'>Hex: {color.hex}</p>
+          <CopyToClipboard text={color.hex} />
+                </div>
+              <p className='color-role'>Role: {color.role}</p>
+          <p className='color-role'>contrast: #FFFFFF</p>
           <button 
             className='delete-button' 
             onClick={handleDeleteClick}

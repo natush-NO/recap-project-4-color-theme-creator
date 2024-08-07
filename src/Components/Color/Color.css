@@ -9,6 +9,26 @@
   background: black;
   color: white;
 }
+
+button {
+  text-transform: uppercase;
+}
+
 .delete-button {
   margin-right: 5px;
+}
+
+.confirm-delete-button {
+  margin-right: 5px;
+}
+
+.copy-div {
+  display: flex;
+  gap: 5px;
+}
+
+.color-text {
+  background-color: black;
+  padding: 0 5px;
+  color: #fff;
 }
